@@ -1,0 +1,57 @@
+```gitignore
+# Virtual Environment
+venv/
+.venv/
+env/
+.env/
+.env
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Chroma Vector Database
+chroma_db/
+chroma/
+*.sqlite3
+
+# Streamlit cache
+.streamlit/secrets.toml
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local uploaded documents
+docs/
+data/
+uploads/
+```
