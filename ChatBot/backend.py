@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-llm = ChatGroq(model='qwen/qwen3.6-27b', reasoning_effort="none")
+llm = ChatGroq(model="openai/gpt-oss-120b",max_tokens=512)
 
 class ChatState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]

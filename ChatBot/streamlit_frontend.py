@@ -3,7 +3,7 @@ from backend import chatbot
 from langchain_core.messages import HumanMessage,AIMessage
 import uuid
 
-#======================================================================
+#========================= UTILITY FUNCTIONS ==================================
 def generate_session_id():
     thread_id = uuid.uuid4()
     return thread_id
@@ -19,7 +19,8 @@ def add_thread(thread_id):
         st.session_state['chat_threads'].append(thread_id)
         
 def load_convo(thread_id):
-    return chatbot.get_state(config={'configurable': {'thread_id':st.session_state['thread_id']}}).values['messages']
+    state = chatbot.get_state(config={'configurable': {'thread_id':st.session_state['thread_id']}})
+    return  state.values.get('messages',[])
     
 #------------------------------------------------------------------------------  
 if "message_history" not in st.session_state:
@@ -35,10 +36,9 @@ if "chat_threads" not in st.session_state:
     # 1. when the whole chat is loaded 
     # 2. when the user click the new chat button
 add_thread(st.session_state['thread_id'])  
-#===========================================================================
+#==============================XXXXXXXXXX=====================================
 st.title("ChatBot with LangGraph")
-
-#--------------------------SIDE BAR -------------------------------------
+#========================== SIDE BAR =========================================
 st.sidebar.title("Langgraph ChatBot")
 if st.sidebar.button('New Chat'):
     reset_chat()
@@ -58,7 +58,7 @@ for thread in st.session_state['chat_threads'][::-1]:
                 temp_history.append({'role': 'assistant', 'content': mssg.content})
         st.session_state['message_history'] = temp_history
 
-#=========================================================================
+#================================XXXXXXXXXXXXX=======================================
 for message in st.session_state['message_history']:
     with st.chat_message(message['role']):
         st.text(message['content'])
